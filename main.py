@@ -34,7 +34,7 @@ def get_monster_list() -> list:
         monster_names = [monster["name"] for monster in monsters]
         return monster_names
     else:
-        return None
+        return []
 
 
 def get_monster_image(url: str, path: str) -> None:
@@ -55,8 +55,9 @@ def main():
     monsters = get_monster_list()
     for monster in monsters:
         image_link = get_monster_image_link(monster)
-        print(image_link)
-        get_monster_image(image_link, f'{os.getenv("STORAGE_PATH")}\\{monster}.png')
+        if image_link:
+            print(image_link)
+            get_monster_image(image_link, f'{os.getenv("STORAGE_PATH")}\\{monster}.png')
 
 
 if __name__ == '__main__':
